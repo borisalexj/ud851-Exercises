@@ -65,9 +65,9 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
      */
     @Override
     public NumberViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        Context context = viewGroup.getContext();
+        mContext = viewGroup.getContext();
         int layoutIdForListItem = R.layout.number_list_item;
-        LayoutInflater inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(mContext);
         boolean shouldAttachToParentImmediately = false;
 
         View view = inflater.inflate(layoutIdForListItem, viewGroup, shouldAttachToParentImmediately);
@@ -75,6 +75,8 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
 
         return viewHolder;
     }
+
+    Context mContext;
 
     /**
      * OnBindViewHolder is called by the RecyclerView to display the data at the specified
@@ -110,6 +112,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
 
         // Will display the position in the list, ie 0 through getItemCount() - 1
         TextView listItemNumberView;
+        View bg;
 
         /**
          * Constructor for our ViewHolder. Within this constructor, we get a reference to our
@@ -122,6 +125,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
             super(itemView);
 
             listItemNumberView = (TextView) itemView.findViewById(R.id.tv_item_number);
+            bg = itemView.findViewById(R.id.bg);
         }
 
         /**
@@ -131,6 +135,8 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
          */
         void bind(int listIndex) {
             listItemNumberView.setText(String.valueOf(listIndex));
+            bg.setBackgroundColor(ColorUtils.getViewHolderBackgroundColorFromInstance(mContext,getPosition()));
+            Log.d(TAG, "bind: " + getAdapterPosition() + "|" + getLayoutPosition()+ "|" + getPosition() + "|"+ getOldPosition());
         }
     }
 }

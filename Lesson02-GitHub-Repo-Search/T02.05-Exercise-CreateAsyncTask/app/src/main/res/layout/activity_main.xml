@@ -24,6 +24,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.android.datafrominternet.MainActivity">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <EditText
         android:id="@+id/et_search_box"
         android:layout_width="match_parent"
