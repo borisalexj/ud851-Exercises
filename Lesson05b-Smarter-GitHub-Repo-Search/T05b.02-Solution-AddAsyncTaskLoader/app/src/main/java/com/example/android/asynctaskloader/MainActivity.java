@@ -21,6 +21,7 @@ import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements
     private TextView mErrorMessageDisplay;
 
     private ProgressBar mLoadingIndicator;
+    private String TAG = this.getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -219,7 +221,9 @@ public class MainActivity extends AppCompatActivity implements
                 // COMPLETED (12) Copy the try / catch block from the AsyncTask's doInBackground method
                 /* Parse the URL from the passed in String and perform the search */
                 try {
+                    Log.d(TAG, "loadInBackground: "+searchQueryUrlString);
                     URL githubUrl = new URL(searchQueryUrlString);
+                    Log.d(TAG, "loadInBackground: " + githubUrl);
                     String githubSearchResults = NetworkUtils.getResponseFromHttpUrl(githubUrl);
                     return githubSearchResults;
                 } catch (IOException e) {

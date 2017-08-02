@@ -19,6 +19,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,12 +71,24 @@ public class MainActivity extends AppCompatActivity {
         mNumbersList.setAdapter(mAdapter);
     }
 
-    // TODO (2) Create a menu resource in res/menu/ called main.xml
-    // TODO (3) Add one item to the menu with an ID of action_refresh
-    // TODO (4) Set the title of the menu item to "Refresh" using strings.xml
-    // TODO (5) Set the orderInCategory value to 1 to make sure this item is the first in the list
-    // TODO (6) Set app:showAsAction to ifRoom to display the menu item in the ActionBar if there is room
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+//        return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_refresh) {
+            mAdapter = new GreenAdapter(NUM_LIST_ITEMS);
+            mNumbersList.setAdapter(mAdapter);
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
 
     // TODO (7) Override onCreateOptionsMenu
     // TODO (8) Use getMenuInflater().inflate to inflate the menu

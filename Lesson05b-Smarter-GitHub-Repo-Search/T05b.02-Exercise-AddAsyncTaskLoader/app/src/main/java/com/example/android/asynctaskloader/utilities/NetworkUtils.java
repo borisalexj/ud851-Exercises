@@ -16,6 +16,7 @@
 package com.example.android.asynctaskloader.utilities;
 
 import android.net.Uri;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,6 +24,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * These utilities will be used to communicate with the network.
@@ -71,6 +74,7 @@ public class NetworkUtils {
      * @throws IOException Related to network and stream reading
      */
     public static String getResponseFromHttpUrl(URL url) throws IOException {
+        Log.d(TAG, "getResponseFromHttpUrl: " + url);
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try {
             InputStream in = urlConnection.getInputStream();
